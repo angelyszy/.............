@@ -79,13 +79,23 @@
             text-align: left;
         }
 
-.navbar-nav .nav-item.active .nav-link {
+        .navbar-nav .nav-item.active .nav-link {
             color: rgba(255, 255, 255, 0.5);
             font-weight: normal;
         }
 
         .custom-bg-color {
             background-color: #1a1a2b;
+        }
+
+        /* Additional style for the success message */
+        .success-message {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none; /* Hide by default */
         }
     </style>
 </head>
@@ -122,7 +132,7 @@
 
     <div class="container">
         <h1>Contact Us</h1>
-        <p>Thank you for your interest in McKinsey. Please fill out the form below to ask a question or report a technical problem.</p>
+        <p>Thank you for your interest in McKinsey.</p>
         <form id="contactForm">
             <div class="form-group">
                 <label for="question">I Have A Question About:*</label>
@@ -143,16 +153,16 @@
                 <label for="email">Email*</label>
                 <input type="email" class="form-control" id="email" required>
             </div>
-            <div class="form-group">
+            <div class "form-group">
                 <label for="company">Company Or School</label>
                 <input type="text" class="form-control" id="company">
             </div>
-            <div class="form-group">
-                <label for="title">Title</label>
+            <div class "form-group">
+               <br> <label for="title">Title</label>
                 <input type="text" class="form-control" id="title">
             </div>
             <div class="form-group">
-                <label for="subject">Subject*</label>
+                <br><label for="subject">Subject*</label>
                 <input type="text" class="form-control" id="subject" required>
             </div>
             <div class="form-group">
@@ -166,36 +176,49 @@
 
             <!-- Privacy Policy Text -->
             <div class="privacy-policy">
-                <p>McKinsey & Company is committed to protecting your information. Your information will be used in accordance
-                    with the applicable data privacy law, our internal policies, and our privacy policy. As McKinsey is a
-                    global organization, your information may be stored and processed by McKinsey and its affiliates in
-                    countries outside your country of residence, but wherever your information is processed, we will handle
-                    it with the same care and respect for your privacy.</p>
+                <p>McKinsey & Company is committed to protecting your information. Your information will be used in accordance with
+                    the applicable data privacy law, our internal policies, and our privacy policy. As McKinsey is a global
+                    organization, your information may be stored and processed by McKinsey and its affiliates in countries
+                    outside your country of residence, but wherever your information is processed, we will handle it with the
+                    same care and respect for your privacy.</p>
             </div>
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+        <!-- Success Message  -->
+        <div class="success-message" id="successMessage">
+            Your question has been submitted!
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- JavaScript for form validation and success message -->
     <script>
-        // Form validation using JavaScript
-        const form = document.getElementById("contactForm");
-        form.addEventListener("submit", function (event) {
-            if (!form.checkValidity()) {
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contactForm");
+            const successMessage = document.getElementById("successMessage");
+            const initialMessage = document.getElementById("initialMessage");
+
+            form.addEventListener("submit", function (event) {
                 event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add("was-validated");
+                if (form.checkValidity()) {
+                    // Form is valid, hide the form and display success message
+                    form.style.display = "none";
+                    successMessage.style.display = "block";
+                }
+                form.classList.add("was-validated");
+            });
         });
     </script>
 </body>
 
 </html>
+
 
 
 
